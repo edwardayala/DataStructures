@@ -1,0 +1,75 @@
+<HTML>
+   <TITLE>Programming Assignment: Maze</TITLE>
+</HEAD>
+<BODY>
+
+<CENTER>
+<H2>CSC2320 Data Structures <br> Programming Assignment P3: <br>Solving A Maze</H2></CENTER>
+
+<h3>General Description</h3>
+<p>You are about to write a program to solve a maze problem. A maze
+can be thought of as an <tt>m x n</tt> grid of cells.  Each cell has 4
+sides: north, east, south, and west. A side of the cell is either a complete
+wall or a wall with an open door. We use 4 bits (W.S.E.N) to indicate whether or not
+a wall has an open door to its adjacent neighbor cell. A bit value of 1 indicates that
+there is an open door and a bit value of
+0 indicates that there is no door (or a complete wall). For example, a bit pattern of 1001 indicates
+that north and west have doors and other two walls don't. Therefore, we can represent this with a single 
+integer number (in this case it is 9) in the range <tt>0..15</tt>. In this assignment, we assume that
+there is only one entry cell and one exit cell. Basically, you will write a program to find a path
+from the entry cell to the exit cell. And then print out the cells (i.e., their coordinates) along the path.
+
+<h3>Instructions</h3>
+<P>You will solve this maze problem using a stack. You need to implement your own stack using linked list technique.
+
+<P>A maze should be built from a maze data file in the following format:
+
+<P><TT>m n</TT>  //m x n grid of cells
+<BR><TT>entry_row entry_column</TT>  //Coordinate for the entry cell
+<BR><TT>exit_row exit_column</TT>    //Coordinate for the exit cell
+<br>//Open door information for cells
+<BR><TT>doors[0][0]&nbsp;&nbsp;&nbsp;&nbsp; doors[0][1]&nbsp;&nbsp;&nbsp;&nbsp;
+doors[0][2]&nbsp;&nbsp;&nbsp; ... doors[0][n-1]</TT>
+<BR><TT>doors[1][0]&nbsp;&nbsp;&nbsp;&nbsp; doors[1][1]&nbsp;&nbsp;&nbsp;&nbsp;
+doors[1][2]&nbsp;&nbsp;&nbsp; ... doors[1][n-1]</TT>
+<BR><TT>:</TT>
+<BR><TT>doors[m-1][0]&nbsp;&nbsp; doors[m-1][1]&nbsp;&nbsp; doors[m-1][2]&nbsp;
+... doors[m-1][n-1]</TT>
+
+<P>where each <tt>cell[i][j]</tt> is an integer number in the range <tt>0..15</tt> representing the
+4 bits. The leading bit is for west side of a cell, then followed by
+south, east and north sides.
+
+<h3>Algorithm</h3>
+<P>Basic idea is that for each cell we want
+to keep track of the following:
+
+<P><TT>visited&nbsp;&nbsp; -- 1 => the cell has been visited. 0 => not
+visited.</TT>
+<BR><TT>parent&nbsp;&nbsp;&nbsp; -- the previous cell from which the current cell is reached.</TT>
+
+<P>We start with the entry cell. First create a stack node with the pointer to the
+cell as the info of the stack node and then place it on the stack. 
+Then we start a loop to explore the maze. The loop stops
+when we hit the exit cell or when the stack has no more nodes on it (i.e. empty).
+In each iteration, we take the top cell off from the stack. Mark it visited. 
+If it is the exit cell, then stop searching.
+If not, we continue and place on the stack all the reachable, unvisited adjacent neighbor 
+cells of the current cell (i.e. the one just being removed from the stack). 
+In the meanwhile, set the current cell as the parent 
+ of its adjacent neighbors. The detailed coding hints are provided in the files in the shared drive. 
+
+<P>After the search ends, if the exit cell has not been reached, that means the maze
+is not solvable. Just print out a message saying the maze is not solvable.
+If the exit cell has been hit, the print out the coordinates of the cells
+along the path from the exit cell to the entry cell by backtracking the parents
+of the cells on the path.
+
+<h3>Requirements and Submision</h3>
+<P>You need to use the header files and client program provided in the shared drive for this programming assignment.
+Up completion, zip all the source code and output into a single zip file and submit
+to the Blackboard by the deadline.<br>
+Happy coding!
+<br>
+</BODY>
+</HTML>
