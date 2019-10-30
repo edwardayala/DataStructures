@@ -23,7 +23,7 @@ Collection of C++ code used to demonstrate various data structures.
  - Linked List Implementation
  - Linked List (Recursive)
  - Library demonstration
- - Stack | Queue Linked List
+ - Stack & Queue Linked List Implementation
 
 ### Stack:
  
